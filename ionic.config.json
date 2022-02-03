@@ -1,0 +1,7 @@
+{
+  "name": "uf-appli-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
