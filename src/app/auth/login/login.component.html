@@ -1,3 +1,26 @@
-<p>
-  login works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password" required></ion-input>
+      </ion-item>
+      <div class="button">
+        <ion-button [disabled]="!loginForm.valid" class="submitButton" type="submit">Submit</ion-button>
+      </div>
+      <div class="error">
+        <div *ngIf="error">{{error}}</div>
+      </div>
+    </form>
+  </div>
+</ion-content>

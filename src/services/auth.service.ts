@@ -22,6 +22,7 @@ export class AuthService {
     const signInRequest = await this.firebaseAuth.signInWithEmailAndPassword(data.email, data.password);
     if (signInRequest) {
       this.isLoggedIn = true;
+      console.log("logged")
       localStorage.setItem('user', JSON.stringify(signInRequest.user));
 
     }
