@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="signUp()">
+      <ion-item lines="full">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Last name</ion-label>
+        <ion-input type="text" formControlName="lastName" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" formControlName="email" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Birth date</ion-label>
+        <ion-input type="date" formControlName="birthDate" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Address</ion-label>
+        <ion-input type="text" formControlName="address" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Country</ion-label>
+        <ion-input type="text" formControlName="country" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Phone</ion-label>
+        <ion-input type="text" formControlName="phone" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password" required></ion-input>
+      </ion-item>
+      <div class="button">
+        <ion-button [disabled]="!registerForm.valid" class="submitButton" type="submit">Submit</ion-button>
+      </div>
+      <div class="error">
+        <div *ngIf="error">{{error}}</div>
+      </div>
+    </form>
+  </div>
+</ion-content>
