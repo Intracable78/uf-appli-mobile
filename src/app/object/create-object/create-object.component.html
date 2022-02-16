@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create an object</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <form [formGroup]="objectForm" (ngSubmit)="createObject()">
+      <ion-item lines="full">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Start price <ion-icon name="logo-euro"></ion-icon>
+        </ion-label>
+        <ion-input type="number" formControlName="priceStart" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">end Date</ion-label>
+        <ion-input type="date" formControlName="dateEnd" required></ion-input>
+      </ion-item>
+      <div class="button">
+        <ion-button [disabled]="!objectForm.valid" class="submitButton" type="submit">Submit</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -16,10 +16,20 @@ import { AppComponent } from './app.component';
 
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
+import { CreateObjectComponent } from './object/create-object/create-object.component';
+import { ObjectListComponent } from './object/object-list/object-list.component';
+import { ObjectDetailComponent } from './object/object-detail/object-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent,
-    LoginComponent],
+  declarations: [
+    AppComponent,
+    RegisterComponent,
+    LoginComponent,
+    CreateObjectComponent,
+    ObjectListComponent,
+    ObjectDetailComponent
+
+  ],
   entryComponents: [
 
   ],
