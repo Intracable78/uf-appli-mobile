@@ -11,23 +11,34 @@
   <div class="card-product">
     <ion-card class="card">
       <ion-card-header>
-
-        <ion-card-title>{{object?.name}}</ion-card-title>
-        <br>
-        <img
-          src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-pink-select-2021?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1629842709000">
+        <ion-title class="titleObject" *ngIf="!object?.auctionObjects[0]?.auction_price"> {{object?.name}} -
+          {{object?.priceStart}} $
+        </ion-title>
+        <ion-title class="titleObject" *ngIf="object?.auctionObjects[0]?.auction_price">{{object?.name}} -
+          {{object?.auctionObjects[0]?.auction_price}} $
+        </ion-title>
       </ion-card-header>
 
 
       <ion-card-content class="card-content">
-        <ion-title>{{object?.priceStart}}</ion-title>
-
-        <ion-button>Ajouter au panier</ion-button>
+        <img
+          src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-pink-select-2021?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1629842709000">
         <ion-button *ngIf="!showInputAuction" (click)="showInputAuction = !showInputAuction;">Auction</ion-button>
-        <ion-button *ngIf="showInputAuction" (click)="showInputAuction = !showInputAuction;">Cancel</ion-button>
-        <div *ngIf="showInputAuction">Tu peux enchèrire</div>
-
-
+        <ion-button *ngIf="showInputAuction" (click)="showInputAuction = !showInputAuction;">Close</ion-button>
+        <div *ngIf="showInputAuction" class="auction-container">
+          <form [formGroup]="auctionObjectForm" (ngSubmit)="createAuctionObject()">
+            <ion-item>
+              <ion-label position="floating">Price</ion-label>
+              <ion-input formControlName="price" type="text" required></ion-input>
+            </ion-item>
+            <div class="button">
+              <ion-button [disabled]="!auctionObjectForm.valid" class="submitButton" type="submit">Submit </ion-button>
+              <div class="error">
+                <div style="color: red;" *ngIf="error">{{error}}</div>
+              </div>
+            </div>
+          </form>
+        </div>
       </ion-card-content>
 
     </ion-card>

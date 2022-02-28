@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Liste des objects</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item [routerLink]="['profile']">
+      <ion-label>
+        Profil
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item [routerLink]="['transactions']">
+      <ion-label>
+        Transactions
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+  <ion-list>
+    <ion-item [routerLink]="['announces']">
+      <ion-label>
+        Annonces ({{countUserObject}})
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

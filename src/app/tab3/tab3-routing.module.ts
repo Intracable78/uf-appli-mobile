@@ -4,7 +4,7 @@ import { Tab3Page } from './tab3.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'account',
     component: Tab3Page,
   }
 ];
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class Tab3PageRoutingModule {}
+export class Tab3PageRoutingModule { }

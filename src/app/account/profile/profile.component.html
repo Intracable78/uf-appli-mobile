@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile {{currentUser?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Informations</ion-card-subtitle>
+      <ion-card-title>{{currentUser?.name}} {{currentUser?.lastName}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div><b>Country :</b> {{currentUser?.country}}</div>
+      <div><b>Address :</b> {{currentUser?.address}}</div>
+      <div><b>Email :</b> {{currentUser?.email}}</div>
+      <div><b>Phone :</b> {{currentUser?.phone}}</div>
+      <div><b>Birth Date :</b> {{currentUser?.birthDate | date:'longDate'}}</div>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

@@ -37,5 +37,10 @@ export class ObjectService {
     return await this.httpClient.patch<Object>(this.ROOT_URL + 'object/update/' + id, object).toPromise();
   }
 
+  async getObjectByUserId(id: number) {
+    return await this.httpClient.get<Object[]>(this.ROOT_URL + 'object/user/' + id).toPromise();
+
+  }
+
 
 }

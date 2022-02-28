@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let object of userObjects">
+    <ion-card-header>
+      <ion-card-subtitle>Informations</ion-card-subtitle>
+      <ion-card-title>{{object?.name}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div><b>Prix de départ:</b>
+        {{object?.priceStart}}
+      </div>
+      <div *ngIf="object?.auctionObjects[0]?.auction_price"><b>Prix actuel :</b>
+        {{object?.auctionObjects[0]?.auction_price}}</div>
+      <div><b>Date de fin :</b> {{object.dateEnd| date:'longDate'}}</div>
+      <div>
+        <ion-button color="danger" (click)="deleteObject(object)">Delete</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

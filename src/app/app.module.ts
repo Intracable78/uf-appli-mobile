@@ -19,7 +19,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { CreateObjectComponent } from './object/create-object/create-object.component';
 import { ObjectListComponent } from './object/object-list/object-list.component';
 import { ObjectDetailComponent } from './object/object-detail/object-detail.component';
-
+import { HomeComponent } from './account/home/home.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { TransactionsComponent } from './account/transactions/transactions.component';
+import { AnnoncesComponent } from './account/annonces/annonces.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,11 @@ import { ObjectDetailComponent } from './object/object-detail/object-detail.comp
     LoginComponent,
     CreateObjectComponent,
     ObjectListComponent,
-    ObjectDetailComponent
+    ObjectDetailComponent,
+    HomeComponent,
+    ProfileComponent,
+    TransactionsComponent,
+    AnnoncesComponent
 
   ],
   entryComponents: [
