@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ObjectService } from 'src/services/object.service';
 import { Toast } from '@capacitor/toast';
+import { UserService } from '../../../services/user.service';
+import { Object } from '../../../models/object.model';
+import { AuctionObjectService } from '../../../services/auction-object.service';
+import { AuctionObject } from '../../../models/auction-object';
 
 @Component({
   selector: 'app-create-object',
@@ -17,6 +21,8 @@ export class CreateObjectComponent implements OnInit {
     private fb: FormBuilder,
     private objectService: ObjectService,
     private router: Router,
+    private userService: UserService,
+    private auctionObjectService: AuctionObjectService,
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +43,22 @@ export class CreateObjectComponent implements OnInit {
       return;
     }
     try {
-      await this.objectService.createObject(this.objectForm.value);
+      const newObject: Object = {
+        name: this.objectForm.value.name,
+        dateEnd: this.objectForm.value.dateEnd,
+        priceStart: this.objectForm.value.priceStart,
+        user: this.userService.getUserData(),
+      }
+
+      const auctionObject: AuctionObject = {
+        object: newObject,
+        user: this.userService.getUserData(),
+        auction_price: this.objectForm.value.priceStart,
+        auction_date: new Date()
+      }
+      console.log(newObject)
+      await this.objectService.createObject(newObject);
+      //await this.auctionObjectService.createAuctionObject(auctionObject);
       this.showHelloToast();
       // this.router.navigate(['/admin/object']);
     } catch (err) {
@@ -47,7 +68,7 @@ export class CreateObjectComponent implements OnInit {
 
   async showHelloToast() {
     await Toast.show({
-      text: 'Hello!',
+      text: 'Object has been created',
     });
   };
 }

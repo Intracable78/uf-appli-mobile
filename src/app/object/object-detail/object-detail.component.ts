@@ -5,6 +5,7 @@ import { ObjectService } from 'src/services/object.service';
 import { Object } from '../../../models/object.model';
 import { AuctionObject } from '../../../models/auction-object';
 import { AuctionObjectService } from 'src/services/auction-object.service';
+import { UserService } from '../../../services/user.service';
 @Component({
   selector: 'app-object-detail',
   templateUrl: './object-detail.component.html',
@@ -22,7 +23,8 @@ export class ObjectDetailComponent implements OnInit {
     private objectService: ObjectService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private auctionObjectService: AuctionObjectService) {
+    private auctionObjectService: AuctionObjectService,
+    private userService: UserService) {
   }
   ngOnInit() {
     let objectId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -46,11 +48,10 @@ export class ObjectDetailComponent implements OnInit {
       return;
     }
     try {
+
       this.auctionObject = {
         object: this.object,
-        user: {
-          id: 8
-        },
+        user: this.userService.getUserData(),
         auction_price: this.auctionObjectForm.value.price,
         auction_date: new Date(),
       }
@@ -59,7 +60,6 @@ export class ObjectDetailComponent implements OnInit {
 
       await this.auctionObjectService.updateAuctionobjectById(this.object.id, this.auctionObject);
       this.loadObject(this.object.id,);
-      // await this.objectService.createObject(this.auctionObjectForm.value);
       // this.showHelloToast();
       // this.router.navigate(['/admin/object']);
     } catch (err) {
