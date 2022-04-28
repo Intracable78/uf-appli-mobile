@@ -1,3 +1,25 @@
-<p>
-  transactions works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My announces</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let data of objectsSold">
+    <ion-card-header>
+      <ion-card-subtitle>Informations</ion-card-subtitle>
+      <ion-card-title>{{data?.object.name}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div><b>Prix d'achat:</b>
+        {{data?.object.priceStart}}
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

@@ -5,14 +5,33 @@
       <ion-label>Annonces</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2">
+    <ion-tab-button tab="tab2" *ngIf="isLogged()">
       <ion-icon name="add-circle-outline"></ion-icon>
       <ion-label>Publier</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="account">
-      <ion-icon name="accessibility-outline"></ion-icon>
+    <ion-tab-button tab="account" *ngIf="isLogged()">
+      <ion-icon name="accessibility-outline">
+      </ion-icon>
       <ion-label>Mon compte</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="disconnect()" *ngIf="isLogged()">
+      <ion-icon name="power">
+      </ion-icon>
+      <ion-label>Se déconnecter</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="login" *ngIf="!isLogged()">
+      <ion-icon name="cog">
+      </ion-icon>
+      <ion-label>Se connecter</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="register" *ngIf="!isLogged()">
+      <ion-icon name="create">
+      </ion-icon>
+      <ion-label>S'inscrire</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

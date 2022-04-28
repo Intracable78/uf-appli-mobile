@@ -9,6 +9,7 @@ import { HomeComponent } from './account/home/home.component';
 import { TransactionsComponent } from './account/transactions/transactions.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { AnnoncesComponent } from './account/annonces/annonces.component';
+import { AuthGuard } from './helper/auth.guard';
 const routes: Routes = [
   {
     path: '',
@@ -24,7 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'create-object',
-    component: CreateObjectComponent
+    component: CreateObjectComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'objects-list',
@@ -37,10 +39,12 @@ const routes: Routes = [
   {
     path: 'account',
     component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'tabs/account/profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'tabs/account/transactions',
@@ -48,7 +52,8 @@ const routes: Routes = [
   },
   {
     path: 'tabs/account/announces',
-    component: AnnoncesComponent
+    component: AnnoncesComponent,
+    canActivate: [AuthGuard]
   }
 ];
 @NgModule({

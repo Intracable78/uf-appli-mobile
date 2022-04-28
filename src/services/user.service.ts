@@ -24,6 +24,14 @@ export class UserService {
     return this.http.patch<User>(this.ROOT_URL + 'user/update/' + id, data).toPromise();
   }
 
+  getUserData() {
+    const token = localStorage.getItem('data');
+    if (token) {
+      const tokenParsed = JSON.parse(token);
+      return tokenParsed;
+    }
+  }
+
   async getUserById(id: number): Promise<User> {
     return await this.http.get<User>(this.ROOT_URL + 'user/' + id).toPromise();
   }

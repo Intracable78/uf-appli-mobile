@@ -46,20 +46,12 @@ export class LoginComponent implements OnInit {
     }
     try {
       await this.authService.signIn(this.loginForm.value);
+      return this.router.navigate(['/'])
     } catch (err) {
-      this.getError(err)
+      this.error = "Email ou mot de passe incorrecte";
+      console.log(err)
     }
 
-  }
-
-  getError(error: ApiError): void {
-    if (error.code === "auth/user-not-found") {
-      this.error = "User not found"
-    }
-
-    if (error.code === "auth/wrong-password") {
-      this.error = "Wrong password"
-    }
   }
 
 }

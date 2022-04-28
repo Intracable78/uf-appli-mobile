@@ -14,6 +14,7 @@ export class AuctionObjectService {
   }
 
   async createAuctionObject(object: AuctionObject) {
+  
     return await this.http.post(this.ROOT_URL + 'auction-object/create', object).toPromise();
   }
 

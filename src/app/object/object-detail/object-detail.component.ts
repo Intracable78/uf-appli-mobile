@@ -6,6 +6,7 @@ import { Object } from '../../../models/object.model';
 import { AuctionObject } from '../../../models/auction-object';
 import { AuctionObjectService } from 'src/services/auction-object.service';
 import { UserService } from '../../../services/user.service';
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-object-detail',
   templateUrl: './object-detail.component.html',
@@ -24,7 +25,8 @@ export class ObjectDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private auctionObjectService: AuctionObjectService,
-    private userService: UserService) {
+    private userService: UserService,
+    private authService: AuthService) {
   }
   ngOnInit() {
     let objectId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -70,5 +72,9 @@ export class ObjectDetailComponent implements OnInit {
   async loadObject(id: string) {
     this.object = await this.objectService.getObjectById(id);
     console.log(this.object);
+  }
+
+  isLogged() {
+    return this.authService.isLogged()
   }
 }

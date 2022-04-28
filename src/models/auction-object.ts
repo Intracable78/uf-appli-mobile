@@ -1,9 +1,10 @@
 import { Object } from './object.model';
-import { UserAuctionObject } from './userAuctionObject';
+import { User } from './user.model';
+
 
 export interface AuctionObject {
     object: Object;
-    user: UserAuctionObject;
+    user: User;
     auction_price: number;
     auction_date: Date;
 }

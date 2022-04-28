@@ -1,9 +1,9 @@
-import {AuctionObject} from './auction-object';
+import { User } from './user.model';
 export interface Object {
     id?: string;
     name: string,
     priceStart: number,
     dateEnd: Date,
-    categoryId: number,
-    auctionObjects : AuctionObject[];
+    user: User,
+    // auctionObjects?: AuctionObject[];
 }

@@ -19,10 +19,8 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUser(8);
-
+    this.getUser(this.userService.getUserData().id);
   }
-
   async getUser(id: number) {
     this.currentUser = await this.userService.getUserById(id)
     console.log(this.currentUser);

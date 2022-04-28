@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +9,17 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(private authService: AuthService,
+    private router: Router) { }
+
+  isLogged() {
+    return this.authService.isLogged();
+  }
+
+  disconnect() {
+    localStorage.removeItem('data');
+    this.router.navigate(['/'])
+
+  }
 
 }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +23,7 @@ import { HomeComponent } from './account/home/home.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { TransactionsComponent } from './account/transactions/transactions.component';
 import { AnnoncesComponent } from './account/annonces/annonces.component';
+import { HttpInterceptorRequest } from './interceptor/http.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,12 @@ import { AnnoncesComponent } from './account/annonces/annonces.component';
     HttpClientModule
 
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorRequest,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

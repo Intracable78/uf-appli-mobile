@@ -19,31 +19,24 @@ export class AuthService {
   isLoggedIn: boolean = false;
 
   async signIn(data: Login): Promise<void> {
-    const signInRequest = await this.firebaseAuth.signInWithEmailAndPassword(data.email, data.password);
-    if (signInRequest) {
-      this.isLoggedIn = true;
-      console.log("logged")
-      localStorage.setItem('user', JSON.stringify(signInRequest.user));
-
-    }
+    const response = await this.http.post<Login>('http://localhost:3000/api/auth/login', data).toPromise();
+    localStorage.setItem('data', JSON.stringify(response));
   }
-  async signUp(data: Register): Promise<void> {
-    const signUpRequest = await this.firebaseAuth.createUserWithEmailAndPassword(data.email, data.password);
-    if (signUpRequest) {
-      this.isLoggedIn = true;
-      console.log(signUpRequest)
-      data.firebaseId = signUpRequest.user.uid;
-      this.signUpDatabase(data);
-    }
-  }
-  signUpDatabase(data: Register): Promise<Register> {
+  async signUp(data: Register): Promise<Register> {
     return this.http.post<Register>('http://localhost:3000/api/user/create', data).toPromise();
   }
-
-  async logout() {
+  logout() {
     const logoutRequest = this.firebaseAuth.signOut();
     if (logoutRequest) {
       this.isLoggedIn = false;
     }
+  }
+
+  isLogged() {
+    const token = localStorage.getItem('data');
+    const tokenParsed = JSON.parse(token);
+    if (tokenParsed)
+      return true
+    return false
   }
 }
